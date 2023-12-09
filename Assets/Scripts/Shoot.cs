@@ -2,26 +2,40 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    public GameObject bulletPrefab; // Префаб пули
-    public Transform shootPoint; // Точка, откуда будут выпущены пули
-    public float shootForce = 2f; // Сила выстрела
-    public float maxChargeTime = 2f; // Максимальное время зарядки
+    public GameObject bulletPrefab; 
+    public Transform shootPoint; 
+    public float shootForce = 2f; 
+    public float maxChargeTime = 2f; 
 
-    private float chargeTime; // Текущее время зарядки
+    private float chargeTime; 
+    private Vector3 initialScale;
+
+    void Start()
+    {
+        initialScale = gameObject.transform.localScale; 
+    }
 
     void Update()
     {
-        // При удержании кнопки мыши начинаем зарядку
         if (Input.GetMouseButton(0))
         {
             chargeTime += Time.deltaTime;
+            chargeTime = Mathf.Clamp(chargeTime, 0, maxChargeTime); 
+
+            float scale = 1 - (chargeTime / maxChargeTime);
+            gameObject.transform.localScale = initialScale * Mathf.Max(scale, 0.1f); 
+
+            if(gameObject.transform.localScale.magnitude <= 0.1f)
+            {
+                //TODO: Game over
+            }
         }
 
-        // При отпускании кнопки мыши выстрел
         if (Input.GetMouseButtonUp(0))
         {
             Fire();
-            chargeTime = 0; // Сбросить время зарядки
+            chargeTime = 0;
+            gameObject.transform.localScale = initialScale;
         }
     }
 
@@ -37,7 +51,7 @@ public class Shoot : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
 
         // Calculate the scale of the bullet based on the charge time
-        float scaleMultiplier = Mathf.Clamp(chargeTime / maxChargeTime, 0.5f, 1f); // Assuming the scaleMultiplier varies between 0.5 and 1
+        float scaleMultiplier = Mathf.Clamp(1 + chargeTime / maxChargeTime, 0.1f, 5f); // Assuming the scaleMultiplier varies between 0.5 and 1
 
         bullet.transform.localScale = bulletPrefab.transform.localScale * scaleMultiplier; // Scale the bullet
 

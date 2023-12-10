@@ -3,7 +3,7 @@ using UnityEngine;
 public class BulletCollision : MonoBehaviour
 {
     public float explosionRadius = DEFAULT_RADIUS; 
-    public LayerMask obstacleLayer; // Слой, на котором находятся препятствия
+    public LayerMask obstacleLayer; 
 
     const float DEFAULT_RADIUS = 5f;
 
@@ -21,7 +21,7 @@ public class BulletCollision : MonoBehaviour
             return;
         }
 
-        Explode();
+        InfectNearbyObjects();
         Destroy(gameObject); 
     }
 
@@ -31,15 +31,15 @@ public class BulletCollision : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 
-    void Explode()
+    void InfectNearbyObjects()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, obstacleLayer);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (var hitCollider in hitColliders)
         {
-            //if(hitCollider.CompareTag("Hazard"))
-            Destroy(hitCollider.gameObject); 
+            if (hitCollider.TryGetComponent<Infectable>(out var infectable))
+            {
+                infectable.Infect(); 
+            }
         }
-
-        //FX of explosion
     }
 }

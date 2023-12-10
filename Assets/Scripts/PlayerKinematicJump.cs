@@ -41,7 +41,7 @@ public class PlayerKinematicJump : MonoBehaviour
         while (elapsedTime < timeToApex)
         {
             transform.position = Vector3.Lerp(startPosition, endPosition, (elapsedTime / timeToApex));
-            transform.position += transform.forward * forwardSpeed * Time.deltaTime;
+            transform.position += forwardSpeed * Time.deltaTime * transform.forward;
             elapsedTime += Time.deltaTime;
             yield return null;
         }

@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1086229493485441974}
   - component: {fileID: 1086229493485441975}
   - component: {fileID: 2067746482}
+  - component: {fileID: 9210194915299945785}
   - component: {fileID: 376115188}
   m_Layer: 0
   m_Name: Player
@@ -147,6 +148,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9210194915299945785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086229493485441960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d2a3a62ae1e294888b5099037c1c06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &376115188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +177,6 @@ MonoBehaviour:
   shootPoint: {fileID: 814612734}
   shootForce: 1
   maxChargeTime: 2
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Shoot : MonoBehaviour
 {
@@ -9,14 +10,21 @@ public class Shoot : MonoBehaviour
 
     private float chargeTime; 
     private Vector3 initialScale;
+    private LevelManager levelManager;
 
     void Start()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         initialScale = gameObject.transform.localScale; 
     }
 
     void Update()
     {
+        if(levelManager.State == LevelManager.GameState.GameOver)
+        {
+            return;
+        }
+
         if (Input.GetMouseButton(0))
         {
             chargeTime += Time.deltaTime;
@@ -24,18 +32,12 @@ public class Shoot : MonoBehaviour
 
             float scale = 1 - (chargeTime / maxChargeTime);
             gameObject.transform.localScale = initialScale * Mathf.Max(scale, 0.1f); 
-
-            if(gameObject.transform.localScale.magnitude <= 0.1f)
-            {
-                //TODO: Game over
-            }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             Fire();
             chargeTime = 0;
-            gameObject.transform.localScale = initialScale;
         }
     }
 
@@ -46,8 +48,6 @@ public class Shoot : MonoBehaviour
 
     void Fire()
     {
-        Debug.Break();
-
         GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
 
         // Calculate the scale of the bullet based on the charge time

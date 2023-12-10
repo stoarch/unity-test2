@@ -411,9 +411,9 @@ GameObject:
   - component: {fileID: 698987206}
   - component: {fileID: 698987205}
   - component: {fileID: 698987204}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -882,6 +882,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f8603bdad480054c9072752a46809f7, type: 3}
+--- !u!1 &1702858305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1086229493485441960, guid: 45fdf71ca344e2140b05efa5dfe1f535,
+    type: 3}
+  m_PrefabInstance: {fileID: 1086229493114969159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1702858312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702858305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28693f0c1ae4ff34a93191b727542c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpHeight: 2
+  timeToApex: 0.5
+  forwardSpeed: 5
+--- !u!114 &1702858313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702858305}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23ee37108a191bd40b565241f5da6d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hopHeight: 2
+  moveSpeed: 5
+  hopRate: 2
 --- !u!1001 &1748723539
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class Shoot : MonoBehaviour
             chargeTime = Mathf.Clamp(chargeTime, 0, maxChargeTime); 
 
             float scale = 1 - (chargeTime / maxChargeTime);
-            gameObject.transform.localScale = initialScale * Mathf.Max(scale, 0.1f); 
+            gameObject.transform.localScale = gameObject.transform.localScale * Mathf.Max(scale, 0.1f); 
         }
 
         if (Input.GetMouseButtonUp(0))

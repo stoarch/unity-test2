@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject gameOverPanel; 
+    private GameObject gameOverPanel;
+    [SerializeField]
+    private GameObject winPanel;
 
     public enum GameState
     {
@@ -28,6 +30,13 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 0.0f;
         gameOverPanel.SetActive(true);
         State = GameState.GameOver;
+    }
+
+    public void Win()
+    {
+        Time.timeScale = 0.0f;
+        winPanel.SetActive(true);
+        State = GameState.Win;
     }
 
     public void Restart()

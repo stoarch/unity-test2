@@ -1,15 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DoorActivator : MonoBehaviour
 {
-    public Transform door; // Ссылка на дверь
-    public Vector3 doorOpenPosition; // Конечная позиция двери
-    public float doorMoveSpeed = 1.0f; // Скорость движения двери
+    public Transform door; 
+    public Vector3 doorOpenPosition; 
+    public float doorMoveSpeed = 1.0f;
+    [SerializeField]
+    private UnityEvent OnDoorActivated;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) // Проверка, является ли объект игроком
+        if (other.CompareTag("Player")) 
         {
             StartCoroutine(MoveDoor(doorOpenPosition));
         }
@@ -17,11 +20,12 @@ public class DoorActivator : MonoBehaviour
 
     IEnumerator MoveDoor(Vector3 targetPosition)
     {
-        // Плавное движение двери до заданной позиции
         while (door.position != targetPosition)
         {
             door.position = Vector3.MoveTowards(door.position, targetPosition, doorMoveSpeed * Time.deltaTime);
             yield return null;
         }
+
+        OnDoorActivated?.Invoke();
     }
 }

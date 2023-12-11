@@ -803,6 +803,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &732468112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4366022295951191144, guid: 38cb4a9802e2a8445926f5d98fda51fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 4366022294977049284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &732468116 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4366022295951191156, guid: 38cb4a9802e2a8445926f5d98fda51fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 4366022294977049284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &732468117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732468112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ebde8480373f24185498fde5cebb6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 732468116}
+  doorOpenPosition: {x: -4.32, y: -0.54, z: -1.72}
+  doorMoveSpeed: 1
 --- !u!1 &778911058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,6 +2095,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goal
       objectReference: {fileID: 0}
+    - target: {fileID: 4366022295951191145, guid: 38cb4a9802e2a8445926f5d98fda51fb,
+        type: 3}
+      propertyPath: m_Height
+      value: 3.6301262
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366022295951191145, guid: 38cb4a9802e2a8445926f5d98fda51fb,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.815063
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366022295951191145, guid: 38cb4a9802e2a8445926f5d98fda51fb,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.08838811
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366022295951191145, guid: 38cb4a9802e2a8445926f5d98fda51fb,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.011450453
+      objectReference: {fileID: 0}
+    - target: {fileID: 4366022295951191145, guid: 38cb4a9802e2a8445926f5d98fda51fb,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4366022295951191156, guid: 38cb4a9802e2a8445926f5d98fda51fb,
         type: 3}
       propertyPath: m_RootOrder
@@ -2081,7 +2133,7 @@ PrefabInstance:
     - target: {fileID: 4366022295951191156, guid: 38cb4a9802e2a8445926f5d98fda51fb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.27
+      value: -1.783
       objectReference: {fileID: 0}
     - target: {fileID: 4366022295951191156, guid: 38cb4a9802e2a8445926f5d98fda51fb,
         type: 3}

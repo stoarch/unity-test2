@@ -3,18 +3,44 @@ using UnityEngine;
 
 public class PlayerKinematicJump : MonoBehaviour
 {
-    public float jumpHeight = 2.0f; // Максимальная высота прыжка
-    public float timeToApex = 0.5f; // Время, чтобы достичь вершины прыжка
-    private bool isJumping = false; // Проверка, находится ли игрок в прыжке
+
+    const float pathWidth = 1.0f;
+
+    public float jumpHeight = 2.0f; 
+    public float timeToApex = 0.5f; 
+    private bool isJumping = false; 
     public float forwardSpeed = 15.0f;
+    [SerializeField]
+    private int obstacleLayer;
 
     void Update()
     {
-        // Прыжок при нажатии клавиши пробела и если не в прыжке
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        if (DetectObstacle() && !isJumping)
         {
             StartCoroutine(PerformJump());
         }
+    }
+
+    bool DetectObstacle()
+    {
+        var playerRadius = transform.localScale.x / 2;
+        float adjustedPathWidth = (pathWidth - playerRadius) / 2;
+
+        var leftRayStart = transform.position - transform.right * adjustedPathWidth;
+        var rightRayStart = transform.position + transform.right * adjustedPathWidth;
+
+        Debug.DrawRay(leftRayStart, transform.forward * 2, Color.blue);
+        Debug.DrawRay(rightRayStart, transform.forward * 2, Color.blue);
+
+        bool leftHit = Physics.Raycast(leftRayStart, transform.forward, 2, obstacleLayer);
+        bool rightHit = Physics.Raycast(rightRayStart, transform.forward, 2, obstacleLayer);
+
+        return leftHit || rightHit; 
+    }
+
+    public void OnDrawGizmos()
+    {
+        Debug.DrawRay(transform.position, transform.forward * 10, Color.green, 2f);
     }
 
     private IEnumerator PerformJump()

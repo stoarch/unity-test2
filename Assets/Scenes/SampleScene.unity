@@ -1817,6 +1817,7 @@ MonoBehaviour:
   jumpHeight: 2
   timeToApex: 0.5
   forwardSpeed: 50
+  obstacleLayer: 3
 --- !u!1001 &1748723539
 PrefabInstance:
   m_ObjectHideFlags: 0
